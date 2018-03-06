@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "School";
+}
+
+<h2>School</h2>
+
+<h4 id="students">Click to View All Student</h4>
+<ul id="school1"></ul>
+<h4 id="courses">Click to View All Courses</h4>
+<ul id="school2"></ul>
+<ul id="school3"></ul>
+<ul id="school4"></ul>
+
+
+@section scripts{
+    <script>
+        document.getElementById("students").onclick = function () {
+            $.get("/Json/AllStudents", function (data) {
+
+                var output = "";
+
+                $.each(data, function (key, value) {
+                    output += "<li>" + value.StudentName;
+
+                    output += "</li>";
+                });
+
+                $("#school1").html(output);
+            });
+        }
+        document.getElementById("courses").onclick = function () {
+            $.get("/Json/AllCourses", function (data) {
+
+                var output = "";
+
+                $.each(data, function (key, value) {
+                    output += "<li>" + value.CourseName;
+
+                    output += "</li>";
+                });
+
+                $("#school2").html(output);
+            });
+        }
+    </script>
+}
